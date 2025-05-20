@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Consultar Conta</title>
+  <link rel="stylesheet" href="acoes_de_conta.css" />
+</head>
+<body>
+  <div class="form-container">
+    <div class="titulo-banco-area">
+      <h1 class="titulo-banco">Banco Malveder</h1>
+      <p class="subtitulo-banco">Consulta de Conta</p>
+    </div>
+
+    <h2>Consultar Conta</h2>
+
+    <form id="consulta-form">
+      <label for="numero-conta">Número da Conta</label>
+      <input type="text" id="numero-conta" name="numero-conta" placeholder="Digite o número da conta" required />
+
+      <button type="submit">Consultar</button>
+    </form>
+
+    <button id="btn-voltar" onclick="window.location.href='dashboard.html'">Voltar ao Dashboard</button>
+
+    <div id="mensagem"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById('consulta-form');
+    const mensagem = document.getElementById('mensagem');
+
+    // Exemplo simples para simular consulta
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const conta = form['numero-conta'].value.trim();
+
+      if (conta === '') {
+        mensagem.textContent = 'Por favor, insira um número de conta válido.';
+        mensagem.style.color = 'red';
+        return;
+      }
+
+      // Simulação de resultado (você pode conectar a backend aqui)
+      // Exemplo fictício: conta 1234 existe, outras não
+      if (conta === '1234') {
+        mensagem.style.color = 'green';
+        mensagem.innerHTML = `
+          <strong>Conta encontrada!</strong><br />
+          Número: 1234<br />
+          Titular: João Silva<br />
+          Saldo: R$ 2.500,00
+        `;
+      } else {
+        mensagem.style.color = 'red';
+        mensagem.textContent = 'Conta não encontrada.';
+      }
+    });
+  </script>
+</body>
+</html>

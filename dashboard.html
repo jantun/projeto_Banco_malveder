@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | Banco Malveder</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar-acoes" id="sidebar-acoes">
+    <h2><i class="fas fa-cogs"></i> Ações de Conta</h2>
+    <a href="cadastro.html" class="btn">Abrir Conta</a>
+    <a href="encerrar_conta.html" class="btn">Encerrar Conta</a>
+    <a href="consultar_conta.html" class="btn">Consultar Conta</a>
+    <a href="alterar_conta.html" class="btn">Alterar Conta</a>
+    <a href="login.html" class="btn">Sair da conta</a>
+  </aside>
+
+  <!-- Conteúdo principal -->
+  <div class="form-container dashboard-container">
+    <div class="titulo-banco-area">
+      <h1 class="titulo-banco">Banco Malveder</h1>
+      <span class="subtitulo-banco">Sua conta digital </span>
+    </div>
+    <h2>Olá,Bem-vindo!</h2>
+
+    <!-- Resumo da Conta -->
+    <section class="resumo-conta">
+      <div class="resumo-item">
+        <span>Total de Despesas:</span>
+        <strong>R$ 1.500,00</strong>
+      </div>
+      <div class="resumo-item">
+        <span>Total de Transferências:</span>
+        <strong>R$ 3.000,00</strong>
+      </div>
+      <div class="resumo-item saldo-atual">
+        <span>Saldo Atual:</span>
+        <strong id="saldo">R$ ****</strong>
+        <button class="olhinho" onclick="toggleSaldo()" aria-label="Exibir saldo">👁️</button>
+      </div>
+    </section>
+
+    <!-- Menu Centralizado -->
+    <nav class="menu-central">
+      <ul>
+        <li><a href="deposito.html" id="deposito-button">Depósito</a></li>
+        <li><a href="saque.html" id="saque-button">Saque</a></li>
+        <li><a href="transferencias.html" id="transferencia-button">Transferência</a></li>
+      </ul>
+    </nav>
+
+    <!-- Gráfico -->
+    <section class="grafico-container">
+      <h3>Desempenho Financeiro</h3>
+      <canvas id="grafico" aria-label="Gráfico de desempenho financeiro"></canvas>
+    </section>
+
+    <!-- Extrato -->
+    <section class="extrato">
+      <h3>Últimas Transações</h3>
+      <ul id="lista-extrato">
+        <li>
+          <i class="fas fa-arrow-down" style="color: green;"></i> 
+          Depósito recebido - <strong>R$ 1.000,00</strong> 
+          <span class="data-transacao">13/05/2025</span>
+        </li>
+        <li>
+          <i class="fas fa-file-invoice" style="color: #007BFF;"></i>
+         Saque - <strong>R$ 90,00</strong>
+          <span class="data-transacao">12/05/2025</span>
+        </li>
+        <li>
+          <i class="fas fa-arrow-up" style="color: red;"></i> 
+          Transferência enviada - <strong>R$ 150,00</strong>
+          <span class="data-transacao">10/05/2025</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Notificações -->
+    <section class="notificacoes">
+      <h3>Notificações</h3>
+      <ul>
+        <li>
+          <i class="fas fa-check-circle" style="color: green;"></i> 
+          Seu depósito foi processado com sucesso!
+          <span class="data-notificacao">13/05/2025</span>
+        </li>
+        <li>
+          <i class="fas fa-credit-card" style="color: #007BFF;"></i> 
+          tranferencia foi realizada com sucesso!
+          <span class="data-notificacao">12/05/2025</span>
+        </li>
+        <li>
+          <i class="fas fa-bell" style="color: orange;"></i> 
+          Você realizou um saque de R$ 500,00!
+          <span class="data-notificacao">11/05/2025</span>
+        </li>
+      </ul>
+    </section>
+  </div>
+  <script>
+    function toggleSaldo() {
+      const saldo = document.getElementById('saldo');
+      if (saldo.textContent.includes('****')) {
+        saldo.textContent = 'R$ 2.350,00';
+      } else {
+        saldo.textContent = 'R$ ****';
+      }
+    }
+  </script>
+  <script src="scripts.js"></script>
+</body>
+</html>

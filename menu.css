@@ -1,0 +1,214 @@
+/* RESET E CONFIGURAÇÕES BÁSICAS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+   font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(120deg, #e0e7ff 0%, #f4f4f4 100%);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+
+  /* Adicione estas linhas para centralizar */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Opcional: para garantir que o conteúdo não ultrapasse a tela */
+  overflow: auto;
+}
+
+/* CABEÇALHO */
+.header {
+  background-color: #232946;
+  color: #fff;
+  padding: 24px 0 18px 0;
+  text-align: center;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 8px rgba(35,41,70,0.06);
+}
+
+/* MENU CENTRAL */
+.menu-central {
+  background-color: #232946;
+  padding: 18px 0;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(35,41,70,0.06);
+}
+
+.menu-central ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-central ul li a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 28px;
+  border-radius: 7px;
+  background-color: #2a2f55;
+  font-size: 16px;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  display: inline-block;
+}
+
+.menu-central ul li a.active,
+.menu-central ul li a:hover {
+  background-color: #232946;
+  color: #fff;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(35,41,70,0.13);
+  transform: scale(1.05);
+}
+
+/* CONTEÚDO PRINCIPAL */
+.dashboard-container {
+  max-width: 480px;
+  /* Remova a margem que empurrava o conteúdo para baixo */
+  margin: 0; /* ou margin: auto; */
+
+  background: #fff;
+  padding: 36px 32px 32px 32px;
+  border-radius: 16px;
+  box-shadow: 0 6px 24px rgba(35,41,70,0.10);
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.dashboard-container h2 {
+  font-size: 26px;
+  margin-bottom: 18px;
+  color: #232946;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.dashboard-container p {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 28px;
+  line-height: 1.5;
+}
+
+/* FORMULÁRIO */
+form {
+  width: 100%;
+}
+
+label {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: #232946;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+input {
+  width: 100%;
+  padding: 13px;
+  margin-bottom: 18px;
+  border: 1.5px solid #e0e7ff;
+  border-radius: 9px;
+  font-size: 16px;
+  background: #f7f8fa;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus {
+  border-color:#232946;
+  outline: none;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.13);
+}
+
+button {
+  width: 100%;
+  padding: 13px;
+  font-size: 17px;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(90deg, #232946 60%,  #232946 100%);
+  border: none;
+  border-radius: 9px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(35, 41, 70, 0.08);
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+  margin-top: 8px;
+  letter-spacing: 1px;
+}
+
+button:hover {
+  background: linear-gradient(90deg, #1d2340 60%, #232946 100%);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 18px rgba(35, 41, 70, 0.13);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* ANIMAÇÃO */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 600px) {
+  .dashboard-container {
+    padding: 18px 6vw 22px 6vw;
+    max-width: 98vw;
+  }
+  .menu-central ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+  button {
+    font-size: 15px;
+    padding: 11px;
+  }
+}
+
+/* BOTÃO VOLTAR */
+.btn-voltar {
+  display: inline-block;
+  margin: 24px 0 0 0; /* margem superior de 24px para espaçar do botão acima */
+  background: #232946;
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1.5px solid transparent;
+  box-shadow: 0 3px 8px rgba(35, 41, 70, 0.15);
+  letter-spacing: 0.8px;
+   
+
+}
+
+.btn-voltar:hover {
+  background: #1f2540;
+  border-color:  #232946;
+  box-shadow: 0 6px 15px rgba(0, 123, 255, 0.35);
+  transform: translateY(-2px);
+  color: #cce4ff;
+}
+
+.btn-voltar:active {
+  transform: translateY(0) scale(0.97);
+  box-shadow: 0 3px 8px rgba(0, 123, 255, 0.25);
+}

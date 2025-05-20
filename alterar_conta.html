@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alterar Conta</title>
+  <link rel="stylesheet" href="acoes_de_conta.css" />
+</head>
+<body>
+  <div class="form-container">
+    <div class="titulo-banco-area">
+      <h1 class="titulo-banco">Banco XYZ</h1>
+      <p class="subtitulo-banco">Alteração de Conta</p>
+    </div>
+
+    <h2>Alterar Conta</h2>
+
+    <form id="alterar-form">
+      <label for="numero-conta">Número da Conta</label>
+      <input type="text" id="numero-conta" name="numero-conta" placeholder="Digite o número da conta" required />
+
+      <label for="novo-nome">Novo Nome do Titular</label>
+      <input type="text" id="novo-nome" name="novo-nome" placeholder="Digite o novo nome do titular" required />
+
+      <button type="submit">Alterar</button>
+    </form>
+
+    <button id="btn-voltar" onclick="window.location.href='dashboard.html'">Voltar ao Dashboard</button>
+
+    <div id="mensagem"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById('alterar-form');
+    const mensagem = document.getElementById('mensagem');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const numeroConta = form['numero-conta'].value.trim();
+      const novoNome = form['novo-nome'].value.trim();
+
+      if (numeroConta === '' || novoNome === '') {
+        mensagem.textContent = 'Preencha todos os campos.';
+        mensagem.style.color = 'red';
+        return;
+      }
+
+      // Simulação fictícia: só a conta 1234 existe
+      if (numeroConta === '1234') {
+        mensagem.style.color = 'green';
+        mensagem.innerHTML = `O titular da conta <strong>${numeroConta}</strong> foi alterado para <strong>${novoNome}</strong>.`;
+      } else {
+        mensagem.style.color = 'red';
+        mensagem.textContent = 'Conta não encontrada.';
+      }
+    });
+  </script>
+</body>
+</html>

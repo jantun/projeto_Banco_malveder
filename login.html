@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Banco Malveder</title>
+  <link rel="stylesheet" href="casdatro_login.css">
+</head>
+<body>
+  <div class="form-container">
+    <div class="titulo-banco-area">
+      <h1 class="titulo-banco">Banco Malveder</h1>
+      <span class="subtitulo-banco">Sua conta digital </span>
+    </div>
+    <h2>Login</h2>
+    <form id="login-form">
+      <label for="email">E-mail</label>
+      <input type="email" id="email" placeholder="Digite seu e-mail" required>
+
+      <label for="senha">Senha</label>
+      <input type="password" id="senha" placeholder="Digite sua senha" required>
+
+      <button type="submit">Entrar</button>
+    </form>
+    <div class="login-link">
+      <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se aqui</a></p>
+    </div>
+  </div>
+  <script>
+    document.getElementById('login-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      // Aqui você pode adicionar a lógica de autenticação real
+      alert('Login realizado com sucesso!');
+      window.location.href = 'otp.html';
+    });
+  </script>
+</body>
+</html>

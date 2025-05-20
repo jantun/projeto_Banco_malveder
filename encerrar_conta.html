@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Encerrar Conta | Banco Malveder</title>
+  <link rel="stylesheet" href="acoes_de_conta.css" />
+</head>
+<body>
+  <div class="form-container">
+    <div class="titulo-banco-area">
+      <h1 class="titulo-banco">Banco Malveder</h1>
+      <span class="subtitulo-banco">Sua conta digital</span>
+    </div>
+    <h2>Encerrar Conta</h2>
+    <form id="encerrar-form" novalidate>
+      <label for="cpf">CPF</label>
+      <input type="text" id="cpf" placeholder="Digite seu CPF" required />
+      <button type="submit">Encerrar Conta</button>
+    </form>
+    <p id="mensagem"></p>
+
+    <!-- Botão para voltar ao dashboard -->
+     <a href="dashboard.html">
+    <button id="btn-voltar" type="button">← Voltar ao Dashboard</button></a>
+  </div>
+
+  <script>
+    document.getElementById('encerrar-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const cpf = document.getElementById('cpf').value.trim();
+      const mensagem = document.getElementById('mensagem');
+
+      let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+
+      const index = usuarios.findIndex(user => user.cpf === cpf);
+
+      if (index === -1) {
+        mensagem.textContent = "Conta não encontrada para o CPF informado.";
+        mensagem.style.color = 'red';
+        return;
+      }
+
+      // Remove a conta do array
+      usuarios.splice(index, 1);
+
+      // Atualiza o localStorage
+      localStorage.setItem('usuarios', JSON.stringify(usuarios));
+
+      mensagem.textContent = "Conta encerrada com sucesso.";
+      mensagem.style.color = 'green';
+
+      // Limpa o campo CPF
+      document.getElementById('cpf').value = '';
+    });
+
+    document.getElementById('btn-voltar').addEventListener('click', function () {
+      window.location.href = 'dashboard.html'; // Ajuste para o nome do seu dashboard
+    });
+  </script>
+</body>
+</html>
