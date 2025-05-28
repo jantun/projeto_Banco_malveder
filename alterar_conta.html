@@ -3,57 +3,166 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Alterar Conta</title>
+  <title>Alterar Dados | Network Bank</title>
   <link rel="stylesheet" href="acoes_de_conta.css" />
 </head>
 <body>
   <div class="form-container">
-    <div class="titulo-banco-area">
-      <h1 class="titulo-banco">Banco XYZ</h1>
-      <p class="subtitulo-banco">Alteração de Conta</p>
-    </div>
+    <h1>Network Bank</h1>
+    <span class="subtitulo-banco">Sua conta digital</span>
 
-    <h2>Alterar Conta</h2>
+    <h2>Alterar Dados da Conta</h2>
 
-    <form id="alterar-form">
-      <label for="numero-conta">Número da Conta</label>
-      <input type="text" id="numero-conta" name="numero-conta" placeholder="Digite o número da conta" required />
+    <form id="alterar-form" novalidate>
+      <label for="cep">CEP</label>
+      <input
+        type="text"
+        id="cep"
+        name="cep"
+        placeholder="Digite seu CEP"
+        pattern="\d{5}-?\d{3}"
+        title="Formato esperado: 00000-000"
+        required
+        autocomplete="postal-code"
+      />
 
-      <label for="novo-nome">Novo Nome do Titular</label>
-      <input type="text" id="novo-nome" name="novo-nome" placeholder="Digite o novo nome do titular" required />
+      <label for="numero">Número</label>
+      <input
+        type="text"
+        id="numero"
+        name="numero"
+        placeholder="Número da residência"
+        required
+        autocomplete="address-line2"
+      />
 
-      <button type="submit">Alterar</button>
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Digite seu email"
+        required
+        autocomplete="email"
+      />
+
+      <label for="senha-antiga">Senha Antiga</label>
+      <input
+        type="password"
+        id="senha-antiga"
+        name="senha-antiga"
+        placeholder="Digite sua senha atual"
+        required
+        autocomplete="current-password"
+      />
+
+      <label for="senha-nova">Senha Nova</label>
+      <input
+        type="password"
+        id="senha-nova"
+        name="senha-nova"
+        placeholder="Digite sua nova senha"
+        required
+        minlength="6"
+        autocomplete="new-password"
+      />
+
+      <label for="confirmar-senha-nova">Confirmar Senha Nova</label>
+      <input
+        type="password"
+        id="confirmar-senha-nova"
+        name="confirmar-senha-nova"
+        placeholder="Confirme sua nova senha"
+        required
+        minlength="6"
+        autocomplete="new-password"
+      />
+
+      <button type="submit" class="btn btn-primario">Salvar Alterações</button>
     </form>
 
-    <button id="btn-voltar" onclick="window.location.href='dashboard.html'">Voltar ao Dashboard</button>
+    <p id="mensagem" class="mensagem"></p>
 
-    <div id="mensagem"></div>
+    <button id="btn-voltar" class="btn btn-secundario" onclick="window.location.href='dashboard.html'">
+      ← Voltar ao Dashboard
+    </button>
   </div>
 
   <script>
     const form = document.getElementById('alterar-form');
     const mensagem = document.getElementById('mensagem');
 
+    const usuarioSimulado = {
+      cep: "12345-678",
+      numero: "123",
+      email: "usuario@exemplo.com",
+      senha: "senha123"
+    };
+
+    // Pré-preenche os campos
+    form.cep.value = usuarioSimulado.cep;
+    form.numero.value = usuarioSimulado.numero;
+    form.email.value = usuarioSimulado.email;
+
     form.addEventListener('submit', function(e) {
       e.preventDefault();
 
-      const numeroConta = form['numero-conta'].value.trim();
-      const novoNome = form['novo-nome'].value.trim();
+      // Reset mensagem
+      mensagem.textContent = "";
+      mensagem.className = "mensagem";
 
-      if (numeroConta === '' || novoNome === '') {
-        mensagem.textContent = 'Preencha todos os campos.';
-        mensagem.style.color = 'red';
+      const cep = form.cep.value.trim();
+      const numero = form.numero.value.trim();
+      const email = form.email.value.trim();
+      const senhaAntiga = form['senha-antiga'].value;
+      const senhaNova = form['senha-nova'].value;
+      const confirmarSenhaNova = form['confirmar-senha-nova'].value;
+
+      const cepRegex = /^\d{5}-?\d{3}$/;
+      if (!cepRegex.test(cep)) {
+        mensagem.textContent = "CEP inválido. Use o formato 00000-000.";
+        mensagem.classList.add('erro');
         return;
       }
 
-      // Simulação fictícia: só a conta 1234 existe
-      if (numeroConta === '1234') {
-        mensagem.style.color = 'green';
-        mensagem.innerHTML = `O titular da conta <strong>${numeroConta}</strong> foi alterado para <strong>${novoNome}</strong>.`;
-      } else {
-        mensagem.style.color = 'red';
-        mensagem.textContent = 'Conta não encontrada.';
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        mensagem.textContent = "Email inválido.";
+        mensagem.classList.add('erro');
+        return;
       }
+
+      if (senhaAntiga !== usuarioSimulado.senha) {
+        mensagem.textContent = "Senha antiga incorreta.";
+        mensagem.classList.add('erro');
+        return;
+      }
+
+      if (senhaNova.length < 6) {
+        mensagem.textContent = "Senha nova deve ter ao menos 6 caracteres.";
+        mensagem.classList.add('erro');
+        return;
+      }
+
+      if (senhaNova !== confirmarSenhaNova) {
+        mensagem.textContent = "A confirmação da senha nova não confere.";
+        mensagem.classList.add('erro');
+        return;
+      }
+
+      // Atualiza dados simulados
+      usuarioSimulado.cep = cep;
+      usuarioSimulado.numero = numero;
+      usuarioSimulado.email = email;
+      usuarioSimulado.senha = senhaNova;
+
+      mensagem.textContent = "Dados alterados com sucesso!";
+      mensagem.classList.add('sucesso');
+
+      // Limpa campos de senha após sucesso
+      form['senha-antiga'].value = '';
+      form['senha-nova'].value = '';
+      form['confirmar-senha-nova'].value = '';
     });
   </script>
 </body>

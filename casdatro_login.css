@@ -41,7 +41,7 @@ body {
 }
 
 .subtitulo-banco {
-  color: #007BFF;
+  color: #232946;
   font-size: 1rem;
   font-weight: 500;
   letter-spacing: 1px;
@@ -110,7 +110,7 @@ input:focus {
 }
 
 .termos-container a {
-  color: #007BFF;
+  color: #232946;
   text-decoration: underline;
   margin-left: 4px;
   transition: color 0.2s;
@@ -124,7 +124,7 @@ button {
   width: 100%;
   padding: 18px;
   margin-top: 20px;
-  background: linear-gradient(90deg, #232946 60%, #007BFF 100%);
+  background: linear-gradient(90deg, #232946 100%);
   color: white;
   border: none;
   border-radius: 22px;
@@ -137,7 +137,7 @@ button {
 }
 
 button:hover {
-  background: linear-gradient(90deg, #1d2340 60%, #0056b3 100%);
+  background: linear-gradient(90deg, #232946 100%);
   transform: scale(1.04);
   box-shadow: 0 8px 24px rgba(35, 41, 70, 0.18);
 }
@@ -155,7 +155,7 @@ button:hover {
 }
 
 .login-link a:hover {
-  color: #007BFF;
+  color: #232946;
 }
 
 #aviso-senha {

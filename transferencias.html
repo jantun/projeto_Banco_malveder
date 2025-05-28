@@ -1,25 +1,31 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Transferência | Banco Malveder</title>
-  <link rel="stylesheet" href="menu.css">
+  <link rel="stylesheet" href="menu.css" />
 </head>
 <body>
   <div class="dashboard-container">
+    <!-- Título do Banco adicionado aqui -->
+    <div class="titulo-banco-area" style="text-align:center; margin-bottom: 20px;">
+      <h1 class="titulo-banco" style="color: #232946; font-weight: 700;">Network Bank</h1>
+     <span class="subtitulo-banco">Sua conta digital </span>
+    </div>
 
     <h2>Transferência</h2>
     <p>Insira os dados para realizar a transferência.</p>
     <form id="form-transferencia">
       <label for="conta-destino">Conta Destino:</label>
-      <input type="text" id="conta-destino" name="conta-destino" placeholder="Digite o número da conta" required>
+      <input type="text" id="conta-destino" name="conta-destino" placeholder="Digite o número da conta" required />
       <label for="valor-transferencia">Valor da Transferência:</label>
-      <input type="number" id="valor-transferencia" name="valor-transferencia" placeholder="Digite o valor" required>
+      <input type="number" id="valor-transferencia" name="valor-transferencia" placeholder="Digite o valor" required />
       <button type="submit">Confirmar Transferência</button>
     </form>
-     <a href="dashboard.html" class="btn-voltar">← Voltar para o Dashboard</a>
+    <a href="dashboard.html" class="btn-voltar">← Voltar para o Dashboard</a>
   </div>
+
   <script>
     document.getElementById('form-transferencia').addEventListener('submit', function(event) {
       event.preventDefault();

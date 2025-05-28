@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Depósito | Banco Malveder</title>
-  <link rel="stylesheet" href="menu.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Depósito | Network Bank</title>
+  <link rel="stylesheet" href="menu.css" />
 </head>
 <body>
   <div class="dashboard-container">
-  
+    <!-- Título do Banco -->
+    <div class="titulo-banco-area" style="text-align: center; margin-bottom: 20px;">
+      <h1 class="titulo-banco" style="color:#232946; font-weight: 700;">Network Bank</h1>
+      <span class="subtitulo-banco" style="color:#555;">Sua conta digital</span>
+    </div>
+
     <h2>Depósito</h2>
     <p>Insira o valor que deseja depositar na sua conta.</p>
     <form id="form-deposito">
       <label for="valor-deposito">Valor do Depósito:</label>
-      <input type="number" id="valor-deposito" name="valor-deposito" placeholder="Digite o valor" required>
+      <input type="number" id="valor-deposito" name="valor-deposito" placeholder="Digite o valor" required />
       <button type="submit">Confirmar Depósito</button>
     </form>
-   <a href="dashboard.html" class="btn-voltar">← Voltar para o Dashboard</a>
+    <a href="dashboard.html" class="btn-voltar">← Voltar para o Dashboard</a>
+  </div>
+
   <script>
     document.getElementById('form-deposito').addEventListener('submit', function(event) {
       event.preventDefault();

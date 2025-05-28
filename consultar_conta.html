@@ -3,58 +3,76 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Consultar Conta</title>
+  <title>Consultar Conta | Network Bank</title>
   <link rel="stylesheet" href="acoes_de_conta.css" />
 </head>
 <body>
   <div class="form-container">
-    <div class="titulo-banco-area">
-      <h1 class="titulo-banco">Banco Malveder</h1>
-      <p class="subtitulo-banco">Consulta de Conta</p>
-    </div>
+    <h1>Network Bank</h1>
+    <p class="subtitulo-banco">Sua conta digital</p><br>
+    <h2>Consultar Conta</h2><br>
 
-    <h2>Consultar Conta</h2>
-
-    <form id="consulta-form">
+    <form id="consulta-form" novalidate>
       <label for="numero-conta">Número da Conta</label>
-      <input type="text" id="numero-conta" name="numero-conta" placeholder="Digite o número da conta" required />
+      <input
+        type="text"
+        id="numero-conta"
+        name="numero-conta"
+        placeholder="Digite o número da conta"
+        required
+        pattern="\d+"
+        title="Somente números"
+        autocomplete="off"
+      />
 
-      <button type="submit">Consultar</button>
+      <button type="submit" class="btn btn-primario">Consultar</button>
     </form>
 
-    <button id="btn-voltar" onclick="window.location.href='dashboard.html'">Voltar ao Dashboard</button>
+    <div id="mensagem" class="mensagem"></div>
 
-    <div id="mensagem"></div>
+    <button class="btn btn-secundario btn-voltar" onclick="window.location.href='dashboard.html'">
+      ← Voltar ao Dashboard
+    </button>
   </div>
 
   <script>
     const form = document.getElementById('consulta-form');
     const mensagem = document.getElementById('mensagem');
 
-    // Exemplo simples para simular consulta
-    form.addEventListener('submit', function(e) {
+    // Simulação de usuários cadastrados
+    const usuariosSimulados = {
+      "1234": { nome: "João Silva", saldo: 2500.00 },
+      "5678": { nome: "Maria Oliveira", saldo: 300.50 },
+      "9999": { nome: "Carlos Souza", saldo: 0.00 }
+    };
+
+    form.addEventListener('submit', (e) => {
       e.preventDefault();
+      mensagem.textContent = "";
+      mensagem.className = "mensagem";
+
       const conta = form['numero-conta'].value.trim();
 
-      if (conta === '') {
-        mensagem.textContent = 'Por favor, insira um número de conta válido.';
-        mensagem.style.color = 'red';
+      // Validação simples para garantir apenas números
+      if (!/^\d+$/.test(conta)) {
+        mensagem.textContent = 'Número de conta inválido. Use apenas números.';
+        mensagem.classList.add('erro');
         return;
       }
 
-      // Simulação de resultado (você pode conectar a backend aqui)
-      // Exemplo fictício: conta 1234 existe, outras não
-      if (conta === '1234') {
-        mensagem.style.color = 'green';
+      // Verifica se a conta existe
+      if (usuariosSimulados.hasOwnProperty(conta)) {
+        const usuario = usuariosSimulados[conta];
         mensagem.innerHTML = `
           <strong>Conta encontrada!</strong><br />
-          Número: 1234<br />
-          Titular: João Silva<br />
-          Saldo: R$ 2.500,00
+          Número: ${conta}<br />
+          Titular: ${usuario.nome}<br />
+          Saldo: R$ ${usuario.saldo.toFixed(2)}
         `;
+        mensagem.classList.add('sucesso');
       } else {
-        mensagem.style.color = 'red';
         mensagem.textContent = 'Conta não encontrada.';
+        mensagem.classList.add('erro');
       }
     });
   </script>
